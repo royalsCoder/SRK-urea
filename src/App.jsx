@@ -18,7 +18,14 @@ function App() {
     const savedData = localStorage.getItem("formData");
     return savedData
       ? JSON.parse(savedData)
-      : { name: "", email: "", number: "" };
+      : {
+          name: "",
+          vehicleNo: "",
+          vehivleKm: "",
+          itemName: "",
+          quantity: "",
+          amount: "",
+        };
   });
 
   // Update local storage whenever form data changes
@@ -147,59 +154,104 @@ function App() {
   return (
     <>
       {status ? (
-        <div className="w-50 m-auto">
-          <form onSubmit={add} class="row g-3">
-            <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">
-                Email
-              </label>
-              <input
-                type="email"
-                class="form-control"
-                id="inputEmail4"
-                name="email"
-                value={formData.email}
-                onChange={onchangeData}
-                required
-              />
-            </div>
-            <div class="col-md-6">
-              <label for="inputPassword4" class="form-label">
-                number
-              </label>
-              <input
-                type="number"
-                class="form-control"
-                id="inputPassword4"
-                name="number"
-                value={formData.number}
-                onChange={onchangeData}
-                required
-              />
-            </div>
-            <div class="col-12">
-              <label for="inputAddress" class="form-label">
-                name
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="inputAddress"
-                name="name"
-                value={formData.name}
-                onChange={onchangeData}
-                placeholder="1234 Main St"
-                required
-              />
-            </div>
-
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">
-                Sign in
-              </button>
-            </div>
-          </form>
-        </div>
+        <>
+          <div className="container mt-4 w-50 mx-auto">
+            <h2 style={{ textAlign: "center" }}>Fill User Data</h2>
+            <form onSubmit={add}>
+              <div className="row">
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
+                    Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="name"
+                    value={formData.name}
+                    onChange={onchangeData}
+                    placeholder="Enter Name"
+                    required
+                  />
+                </div>
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
+                    VEHICLE NO:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="vehicleNo"
+                    value={formData.vehicleNo}
+                    onChange={onchangeData}
+                    placeholder="Enter Vehicle No"
+                    required
+                  />
+                </div>
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
+                    VEHICLE K.M.
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="vehivleKm"
+                    value={formData.vehivleKm}
+                    onChange={onchangeData}
+                    placeholder="Enter K.M."
+                    required
+                  />
+                </div>
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
+                    ITEM NAME:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="itemName"
+                    value={formData.itemName}
+                    onChange={onchangeData}
+                    placeholder="Enter Item"
+                  />
+                </div>
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
+                    QUANTITY:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="quantity"
+                    value={formData.quantity}
+                    onChange={onchangeData}
+                    placeholder="Enter Quantity"
+                    required
+                  />
+                </div>
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
+                    AMOUNT:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="amount"
+                    value={formData.amount}
+                    onChange={onchangeData}
+                    placeholder="Enter Amt"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-lg-12" style={{ textAlign: "center" }}>
+                <button type="submit" className="btn btn-success">
+                  PRINT
+                </button>
+              </div>
+            </form>
+                
+          </div>
+        </>
       ) : (
         <div>
           <h1>{formData?.name}</h1>
