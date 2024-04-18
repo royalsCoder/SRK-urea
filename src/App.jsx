@@ -151,11 +151,23 @@ function App() {
     console.log("add form");
   };
 
+  const deleteData = () => {
+    localStorage.removeItem("formData");
+    setFormData({
+      name: "",
+      vehicleNo: "",
+      vehivleKm: "",
+      itemName: "",
+      quantity: "",
+      amount: "",
+    });
+  };
+
   return (
     <>
       {status ? (
         <>
-          <div className="container mt-4 w-50 mx-auto">
+          <div className="container mt-4 ">
             <h2 style={{ textAlign: "center" }}>Fill User Data</h2>
             <form onSubmit={add}>
               <div className="row">
@@ -246,6 +258,9 @@ function App() {
               <div className="col-lg-12" style={{ textAlign: "center" }}>
                 <button type="submit" className="btn btn-success">
                   PRINT
+                </button>
+                <button onClick={deleteData} className="btn btn-success mx-3">
+                  clear Data
                 </button>
               </div>
             </form>
