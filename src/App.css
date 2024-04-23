@@ -1,0 +1,30 @@
+.invoice{
+    border: 1px solid black;
+}
+.invoice-border-bottom{
+    border-bottom: 1px solid black;
+}
+.invoice-border-left{
+    border-left: 1px solid black;
+}
+.invoice-border-right{
+    border-right: 1px solid black;
+}
+.invoice-border-top{
+    border-top: 1px solid black;
+}
+
+.mainheading{
+    font-size: 2rem;
+    color: black;
+}
+.rowpadding{
+    padding: 0px ;
+}
+
+.tablebg{
+    background-color: #f1e7e7 !important;
+}
+.padding-y{
+    padding: 1rem 0rem;
+}

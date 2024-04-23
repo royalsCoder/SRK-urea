@@ -1,10 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import logo from "../public/logo/logo.png";
+import { useReactToPrint } from "react-to-print";
+import Table from "./components/Table";
 
 function App() {
   const [count, setCount] = useState(0);
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   // const [formData, setFormData] = useState({
   //   name: "",
@@ -264,15 +272,282 @@ function App() {
                 </button>
               </div>
             </form>
-                
           </div>
         </>
       ) : (
         <div>
-          <h1>{formData?.name}</h1>
-          <h1>{formData?.number}</h1>
+          <button onClick={handlePrint} className="btn btn-primary">
+            print
+          </button>
+          <div ref={componentRef} style={{ width: "90%", margin: "2rem auto" }}>
+            <div className=" w-100 m-auto invoice ">
+              <div className="row m-0 d-flex invoice-border-bottom">
+                <div className="col-2 p-0">
+                  <img className="w-100 ps-2" src={logo} alt="logo" />
+                </div>
+                <div className="col p-0 text-center">
+                  <h5 className="m-0 mainheading">DIVOL PETRO CHEM</h5>
+                  <p className="m-0">
+                    11, KASHIPUR DHANPALPUR, KHUSHIPUR SADAR,AH 1 BHADWAR <br />
+                    VARANASI ,UTTAR PRADESH -226021
+                  </p>
+                  <p className="m-0">
+                    Phone No : 9569853060 E-mail : defdke@gmail.com
+                  </p>
+                  <h5 className="m-0 mainheading">GST-INVOICE</h5>
+
+                  <p className="m-0">Mobile No: 1234567890</p>
+                </div>
+                <div className="col-2"></div>
+              </div>
+              <div className="row m-0 py-2 rowpadding invoice-border-bottom">
+                <p className="m-0">
+                  <strong>GSTIN:</strong> 09FHGRVR2342{" "}
+                </p>
+              </div>
+              <div className="row padding-y m-0 invoice-border-bottom">
+                <div className="col p-0">
+                  <p className=" ps-2">
+                    <strong>DEV NATRAY</strong>
+                  </p>
+                  <p className="m-0 ps-2">
+                    <strong>GSTIN : </strong>
+                  </p>
+                  <p className="m-0 ps-2">
+                    <strong>UID NO : </strong>
+                  </p>
+                </div>
+                <div className="col p-0">
+                  <p className="m-0">
+                    Invoice No: <strong>23-24/b371</strong>{" "}
+                  </p>
+                  <p className="m-0">
+                    Book No: <strong>8 </strong>{" "}
+                  </p>
+                  <p className="m-0">
+                    Invoice Date: <strong>23/03/2024 </strong>
+                  </p>
+                  <p className="m-0">Destination: </p>
+                  <p className="m-0">Dispatched Through: </p>
+                  <p className="m-0">
+                    Vehical No: <strong>nl 01 ag 7545</strong>{" "}
+                  </p>
+                </div>
+              </div>
+
+              <div className="row m-0 invoice-border-bottom tablebg">
+                <div
+                  style={{ width: "3rem" }}
+                  className="col-2 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  <strong>S no.</strong>
+                </div>
+                <div className="col p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center">
+                  <strong>Item</strong>
+                </div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  <strong>Qyt.</strong>
+                </div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  <strong>Unit.</strong>
+                </div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  <strong>Price</strong>
+                </div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  <strong>Totle</strong>
+                </div>
+              </div>
+
+              <div className="row m-0 ">
+                <div
+                  style={{ width: "3rem" }}
+                  className="col-2 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  1
+                </div>
+                <div className="col p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center">
+                  {formData?.itemName}
+                </div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  {formData?.quantity}
+                </div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+              </div>
+
+              <Table />
+              <Table />
+              <Table />
+              <Table />
+
+              <Table />
+              <Table />
+              <Table />
+              <Table />
+
+              <div className="row m-0 invoice-border-bottom ">
+                <div
+                  style={{ width: "3rem" }}
+                  className="col-2 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div className="col p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+              </div>
+              <div className="row m-0 invoice-border-bottom ">
+                <div
+                  style={{ width: "3rem" }}
+                  className="col-2 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  {" "}
+                  <strong>Total:</strong>{" "}
+                </div>
+                <div className="col p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+              </div>
+
+              <div className="row m-0 invoice-border-bottom ">
+                <div className="col p-0  ps-2 py-2 d-flex justify-content-start align-items-center">
+                  {" "}
+                  <strong>Rs. (In Words):</strong>
+                  {amountWord}
+                </div>
+                <div className="col-2 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  {" "}
+                </div>
+                <div
+                  style={{ width: "8rem" }}
+                  className="col-4 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  {" "}
+                  <strong>Grand Total</strong>
+                </div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  {" "}
+                  <strong>10000</strong>
+                </div>
+              </div>
+
+              <div className="row m-0  invoice-border-bottom">
+                <div className="col-8 invoice-border-right">
+                  <p className="m-0">
+                    <strong>Terms & Conditions</strong>
+                  </p>
+                  <p className="m-0">
+                    1. OUR RISKS AND RESPONSIBILTY CEASES AS SOON
+                  </p>
+                  <p className="m-0">
+                    2. OUR RISKS AND RESPONSIBILTY CEASES AS SOON
+                  </p>
+                  <p className="m-0">
+                    3. OUR RISKS AND RESPONSIBILTY CEASES AS SOON
+                  </p>
+                  <p className="">
+                    4. OUR RISKS AND RESPONSIBILTY CEASES AS SOON
+                  </p>
+                </div>
+                <div className="col">
+                  <p className="m-0">
+                    <strong>BANK NAME:</strong>
+                    HDFC BANK
+                  </p>
+                  <p className="m-0">
+                    <strong>A/C NO:</strong>
+                    45456545654645
+                  </p>
+                  <p className="">
+                    <strong>IFSC CODE:</strong>
+                    HDFC345345435
+                  </p>
+                </div>
+              </div>
+
+              <div className="row m-0  invoice-border-bottom">
+                <div className="col-9">
+                  {" "}
+                  <p className="m-0">
+                    <strong>DECLARATION:</strong>
+                  </p>
+                  <p className="mb-4">
+                    SDFDSJFHSD SDHFK SDFHSDK JFHSKD SDHGKSDG FSDKFJDGSL FKJG
+                    FDSLKGJSLDFJSG SKDJGDSSDJGF SDKFJGSD
+                  </p>
+                  <p className="mb-5">
+                    <strong>Authorised signatory</strong>
+                  </p>
+                </div>
+                <div className="col"></div>
+              </div>
+            </div>
+                  
+          </div>
           <h5>
-            {" "}
             <strong>In words:</strong> {amountWord}
             <button
               onClick={() => {
