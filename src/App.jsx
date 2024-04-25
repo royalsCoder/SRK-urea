@@ -7,18 +7,10 @@ import { useReactToPrint } from "react-to-print";
 import Table from "./components/Table";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
-
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   number: "",
-  // });
 
   const [status, setStatus] = useState(true);
 
@@ -33,6 +25,8 @@ function App() {
           itemName: "",
           quantity: "",
           amount: "",
+          address: "",
+          date: "",
         };
   });
 
@@ -168,6 +162,8 @@ function App() {
       itemName: "",
       quantity: "",
       amount: "",
+      address: "",
+      date: "",
     });
   };
 
@@ -179,6 +175,39 @@ function App() {
             <h2 style={{ textAlign: "center" }}>Fill User Data</h2>
             <form onSubmit={add}>
               <div className="row">
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
+                    Address:
+                  </label>
+
+                  <select
+                    name="address"
+                    value={formData.address}
+                    onChange={onchangeData}
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Please select</option>
+                    <option value="NEW MADINA HOTEL, SITAPUR ROAD LUCKNOW">
+                      NEW MADINA HOTEL, SITAPUR ROAD LUCKNOW
+                    </option>
+                    <option value="baba dhaba">baba dhaba</option>
+                  </select>
+                </div>
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
+                    Date:
+                  </label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    name="date"
+                    value={formData.date}
+                    onChange={onchangeData}
+                    placeholder="Enter Name"
+                    required
+                  />
+                </div>
                 <div className="mb-3 col-md-6">
                   <label htmlFor="selectDepot" className="form-label">
                     Name:
@@ -286,11 +315,8 @@ function App() {
                   <img className="w-100 ps-2" src={logo} alt="logo" />
                 </div>
                 <div className="col p-0 text-center">
-                  <h5 className="m-0 mainheading">DIVOL PETRO CHEM</h5>
-                  <p className="m-0">
-                    11, KASHIPUR DHANPALPUR, KHUSHIPUR SADAR,AH 1 BHADWAR <br />
-                    VARANASI ,UTTAR PRADESH -226021
-                  </p>
+                  <h5 className="m-0 mainheading">A.S.K Def Filling Station</h5>
+                  <p className="m-0">{formData?.address}</p>
                   <p className="mb-3">
                     Phone No : 9569853060 E-mail : defdke@gmail.com
                   </p>
@@ -316,13 +342,7 @@ function App() {
                 </div>
                 <div className="col p-0">
                   <p className="m-0">
-                    Invoice No: <strong>23-24/b371</strong>{" "}
-                  </p>
-                  <p className="m-0">
-                    Book No: <strong>8 </strong>{" "}
-                  </p>
-                  <p className="m-0">
-                    Invoice Date: <strong>23/03/2024 </strong>
+                    Invoice Date: <strong>{formData?.date} </strong>
                   </p>
                   <p className="m-0">Destination: </p>
                   <p className="m-0">Dispatched Through: </p>
@@ -335,7 +355,7 @@ function App() {
               <div className="row m-0 invoice-border-bottom tablebg">
                 <div
                   style={{ width: "3rem" }}
-                  className="col-2 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                  className="col-1 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   <strong>S no.</strong>
                 </div>
@@ -344,54 +364,51 @@ function App() {
                 </div>
                 <div
                   style={{ width: "6rem" }}
-                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                  className="col-1 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   <strong>HSN/SAL</strong>
                 </div>
                 <div
-                  style={{ width: "4rem" }}
-                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                  style={{ width: "3rem" }}
+                  className="col-1 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   <strong>Unit</strong>
                 </div>
                 <div
-                  style={{ width: "4rem" }}
-                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                  style={{ width: "3rem" }}
+                  className="col-1 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   <strong>Qyt.</strong>
                 </div>
                 <div
-                  style={{ width: "5rem" }}
-                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                  style={{ width: "4rem" }}
+                  className="col-1 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   <strong>Rate</strong>
                 </div>
                 <div
                   style={{ width: "6rem" }}
-                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                  className="col-1 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   <strong>Amount</strong>
                 </div>
                 <div
                   style={{ width: "4rem" }}
-                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                  className="col-1 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   <strong>Disc.</strong>
                 </div>
-                <div
-                  style={{ width: "7rem" }}
-                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
-                >
-                  <strong>Taxable Amt</strong>
-                </div>
+
                 <div
                   style={{ width: "6rem" }}
-                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
+                  className="col-1 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   <strong>Net Amt</strong>
                 </div>
               </div>
 
+              <Table />
+              <Table />
               <Table />
               <Table />
               <Table />
@@ -413,15 +430,15 @@ function App() {
                   className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 ></div>
                 <div
-                  style={{ width: "4rem" }}
+                  style={{ width: "3rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "3rem" }}
                   className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 ></div>
                 <div
                   style={{ width: "4rem" }}
-                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
-                ></div>
-                <div
-                  style={{ width: "5rem" }}
                   className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 ></div>
                 <div
@@ -432,10 +449,7 @@ function App() {
                   style={{ width: "4rem" }}
                   className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 ></div>
-                <div
-                  style={{ width: "7rem" }}
-                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
-                ></div>
+
                 <div
                   style={{ width: "6rem" }}
                   className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
@@ -451,17 +465,14 @@ function App() {
                 </div>
                 <div className="col p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"></div>
                 <div
-                  style={{ width: "6rem" }}
+                  style={{ width: "5rem" }}
                   className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 ></div>
                 <div
                   style={{ width: "4rem" }}
                   className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 ></div>
-                <div
-                  style={{ width: "7rem" }}
-                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
-                ></div>
+
                 <div
                   style={{ width: "6rem" }}
                   className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
