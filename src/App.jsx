@@ -358,11 +358,7 @@ function App() {
                 </div>
                 <div className="col-2"></div>
               </div>
-              <div className="row m-0 py-2 rowpadding invoice-border-bottom">
-                <p className="m-0">
-                  <strong>GSTIN:</strong>
-                </p>
-              </div>
+
               <div className="row padding-y m-0 invoice-border-bottom">
                 <div className="col p-0">
                   <p className=" ps-2">
@@ -465,20 +461,23 @@ function App() {
                   style={{ width: "3rem" }}
                   className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
-                  {formData?.quantity}
+                  <strong>{formData?.quantity}</strong>
                 </div>
                 <div
                   style={{ width: "4rem" }}
                   className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
-                  Rs {formData?.rate}
+                  <strong>₹ {formData?.rate}</strong>
                 </div>
                 <div
                   style={{ width: "6rem" }}
                   className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   {" "}
-                  Rs {Number(formData?.rate) * Number(formData?.quantity)}
+                  <strong>
+                    {" "}
+                    ₹ {Number(formData?.rate) * Number(formData?.quantity)}
+                  </strong>
                 </div>
                 <div
                   style={{ width: "4rem" }}
@@ -489,7 +488,10 @@ function App() {
                   style={{ width: "6rem" }}
                   className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
-                  Rs {Number(formData?.rate) * Number(formData?.quantity)}
+                  <strong>
+                    {" "}
+                    ₹ {Number(formData?.rate) * Number(formData?.quantity)}
+                  </strong>
                 </div>
               </div>
 
@@ -568,19 +570,10 @@ function App() {
               <div className="row m-0 invoice-border-bottom ">
                 <div className="col p-0  ps-2 py-2 d-flex justify-content-start align-items-center">
                   {" "}
-                  <strong>Rs. (In Words) : </strong> {amountWord}
+                  <strong>Rs. (In Words) : {amountWord} </strong>
                 </div>
                 <div className="col-2 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"></div>
-                <div
-                  style={{ width: "6rem" }}
-                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
-                ></div>
-                <div
-                  style={{ width: "6rem" }}
-                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
-                >
-                  {" "}
-                </div>
+
                 <div
                   style={{ width: "8rem" }}
                   className="col-4 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
@@ -594,7 +587,7 @@ function App() {
                 >
                   {" "}
                   <strong>
-                    Rs {Number(formData?.rate) * Number(formData?.quantity)}
+                    ₹ {Number(formData?.rate) * Number(formData?.quantity)}
                   </strong>
                 </div>
               </div>
@@ -605,16 +598,18 @@ function App() {
                     <strong>Terms & Conditions</strong>
                   </p>
                   <p className="m-0">
-                    1. OUR RISKS AND RESPONSIBILTY CEASES AS SOON
+                    1. *Payment Terms:* Full payment is due upon receipt of this
+                    invoice.
                   </p>
                   <p className="m-0">
-                    2. OUR RISKS AND RESPONSIBILTY CEASES AS SOON
+                    2. *Confidentiality:* The information contained in this
+                    invoice is confidential and should not be disclosed
+                    without consent.
                   </p>
                   <p className="m-0">
-                    3. OUR RISKS AND RESPONSIBILTY CEASES AS SOON
-                  </p>
-                  <p className="">
-                    4. OUR RISKS AND RESPONSIBILTY CEASES AS SOON
+                    3. Limitation of Liability: Our liability for any damages or
+                    losses arising from this transaction is limited to the total
+                    amount paid for the goods/services.
                   </p>
                 </div>
                 <div className="col">
@@ -637,20 +632,26 @@ function App() {
                     <strong>DECLARATION:</strong>
                   </p>
                   <p className="mb-4">
-                    SDFDSJFHSD SDHFK SDFHSDK JFHSKD SDHGKSDG FSDKFJDGSL FKJG
-                    FDSLKGJSLDFJSG SKDJGDSSDJGF SDKFJGSD
+                    We hereby declare that all the information provided in this
+                    invoice receipt is true and accurate to the best of our
+                    knowledge. Any discrepancies found shall be rectified
+                    promptly upon notification. Thank you for your
+                    trust and cooperation
                   </p>
                   <p className="mb-5">
                     <strong>Authorised signatory</strong>
                   </p>
                 </div>
-                <div className="col"></div>
+                <div className="col d-flex justify-content-center align-items-end ">
+                  <p className="mb-5">
+                    <strong>Authorised signatory</strong>
+                  </p>
+                </div>
               </div>
             </div>
                   
           </div>
           <h5>
-            <strong>In words:</strong> {amountWord}
             <button
               onClick={() => {
                 setStatus(true);
