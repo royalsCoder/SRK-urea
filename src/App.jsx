@@ -27,6 +27,9 @@ function App() {
           amount: "",
           address: "",
           date: "",
+          number: "",
+          cnumber: "",
+          rate: "",
         };
   });
 
@@ -142,7 +145,7 @@ function App() {
     return words.trim() + " ";
   };
 
-  let grandTotal = formData?.number; // Example value
+  let grandTotal = Number(formData?.rate) * Number(formData?.quantity); // Example value
   let amountWord = convertNumberToWords(grandTotal);
   console.log(amountWord);
   // const toword = toWords(formData?.number);
@@ -164,6 +167,9 @@ function App() {
       amount: "",
       address: "",
       date: "",
+      number: "",
+      cnumber: "",
+      rate: "",
     });
   };
 
@@ -196,6 +202,48 @@ function App() {
                 </div>
                 <div className="mb-3 col-md-6">
                   <label htmlFor="selectDepot" className="form-label">
+                    Mobile Number:
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    name="number"
+                    value={formData.number}
+                    onChange={onchangeData}
+                    placeholder="Enter Name"
+                    required
+                  />
+                </div>
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
+                    Customer Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="name"
+                    value={formData.name}
+                    onChange={onchangeData}
+                    placeholder="Enter Name"
+                    required
+                  />
+                </div>
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
+                    Customer Mobile NO.:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="cnumber"
+                    value={formData.cnumber}
+                    onChange={onchangeData}
+                    placeholder="Enter Name"
+                    required
+                  />
+                </div>
+                <div className="mb-3 col-md-6">
+                  <label htmlFor="selectDepot" className="form-label">
                     Date:
                   </label>
                   <input
@@ -208,20 +256,7 @@ function App() {
                     required
                   />
                 </div>
-                <div className="mb-3 col-md-6">
-                  <label htmlFor="selectDepot" className="form-label">
-                    Name:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="name"
-                    value={formData.name}
-                    onChange={onchangeData}
-                    placeholder="Enter Name"
-                    required
-                  />
-                </div>
+
                 <div className="mb-3 col-md-6">
                   <label htmlFor="selectDepot" className="form-label">
                     VEHICLE NO:
@@ -279,13 +314,13 @@ function App() {
                 </div>
                 <div className="mb-3 col-md-6">
                   <label htmlFor="selectDepot" className="form-label">
-                    AMOUNT:
+                    Rate:
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    name="amount"
-                    value={formData.amount}
+                    name="rate"
+                    value={formData.rate}
                     onChange={onchangeData}
                     placeholder="Enter Amt"
                     required
@@ -318,36 +353,35 @@ function App() {
                   <h5 className="m-0 mainheading">A.S.K Def Filling Station</h5>
                   <p className="m-0">{formData?.address}</p>
                   <p className="mb-3">
-                    Phone No : 9569853060 E-mail : defdke@gmail.com
+                    Phone No : {formData?.number} E-mail : defdke@gmail.com
                   </p>
                 </div>
                 <div className="col-2"></div>
               </div>
               <div className="row m-0 py-2 rowpadding invoice-border-bottom">
                 <p className="m-0">
-                  <strong>GSTIN:</strong> 09FHGRVR2342{" "}
+                  <strong>GSTIN:</strong>
                 </p>
               </div>
               <div className="row padding-y m-0 invoice-border-bottom">
                 <div className="col p-0">
                   <p className=" ps-2">
-                    <strong>DEV NATRAY</strong>
+                    <strong> Cusomer Name : {formData?.name}</strong>
                   </p>
                   <p className="m-0 ps-2">
-                    <strong>GSTIN : </strong>
-                  </p>
-                  <p className="m-0 ps-2">
-                    <strong>UID NO : </strong>
+                    <strong>Cusomer Number : {formData?.cnumber} </strong>
                   </p>
                 </div>
                 <div className="col p-0">
                   <p className="m-0">
                     Invoice Date: <strong>{formData?.date} </strong>
                   </p>
-                  <p className="m-0">Destination: </p>
-                  <p className="m-0">Dispatched Through: </p>
                   <p className="m-0">
-                    Vehical No: <strong>nl 01 ag 7545</strong>{" "}
+                    KM: <strong>{formData?.vehivleKm}</strong>{" "}
+                  </p>
+
+                  <p className="m-0">
+                    Vehical No: <strong>{formData?.vehicleNo}</strong>{" "}
                   </p>
                 </div>
               </div>
@@ -404,6 +438,58 @@ function App() {
                   className="col-1 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   <strong>Net Amt</strong>
+                </div>
+              </div>
+
+              <div className="row m-0  ">
+                <div
+                  style={{ width: "3rem" }}
+                  className="col-2 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  1
+                </div>
+                <div className="col p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center">
+                  {formData?.itemName}
+                </div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+                <div
+                  style={{ width: "3rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  ltr
+                </div>
+                <div
+                  style={{ width: "3rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  {formData?.quantity}
+                </div>
+                <div
+                  style={{ width: "4rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  Rs {formData?.rate}
+                </div>
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  {" "}
+                  Rs {Number(formData?.rate) * Number(formData?.quantity)}
+                </div>
+                <div
+                  style={{ width: "4rem" }}
+                  className="col-3 p-0 invoice-border-right ps-2 py-2 d-flex justify-content-start align-items-center"
+                ></div>
+
+                <div
+                  style={{ width: "6rem" }}
+                  className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
+                >
+                  Rs {Number(formData?.rate) * Number(formData?.quantity)}
                 </div>
               </div>
 
@@ -482,8 +568,7 @@ function App() {
               <div className="row m-0 invoice-border-bottom ">
                 <div className="col p-0  ps-2 py-2 d-flex justify-content-start align-items-center">
                   {" "}
-                  <strong>Rs. (In Words):</strong>
-                  {amountWord}
+                  <strong>Rs. (In Words) : </strong> {amountWord}
                 </div>
                 <div className="col-2 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"></div>
                 <div
@@ -508,7 +593,9 @@ function App() {
                   className="col-3 p-0  ps-2 py-2 d-flex justify-content-start align-items-center"
                 >
                   {" "}
-                  <strong>10000</strong>
+                  <strong>
+                    Rs {Number(formData?.rate) * Number(formData?.quantity)}
+                  </strong>
                 </div>
               </div>
 
@@ -532,16 +619,13 @@ function App() {
                 </div>
                 <div className="col">
                   <p className="m-0">
-                    <strong>BANK NAME:</strong>
-                    HDFC BANK
+                    <strong></strong>
                   </p>
                   <p className="m-0">
-                    <strong>A/C NO:</strong>
-                    45456545654645
+                    <strong></strong>
                   </p>
                   <p className="">
-                    <strong>IFSC CODE:</strong>
-                    HDFC345345435
+                    <strong></strong>
                   </p>
                 </div>
               </div>
