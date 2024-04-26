@@ -362,10 +362,10 @@ function App() {
               <div className="row padding-y m-0 invoice-border-bottom">
                 <div className="col p-0">
                   <p className=" ps-2">
-                    <strong> Cusomer Name : {formData?.name}</strong>
+                    <strong> Customer Name : {formData?.name}</strong>
                   </p>
                   <p className="m-0 ps-2">
-                    <strong>Cusomer Number : {formData?.cnumber} </strong>
+                    <strong>Customer Number : {formData?.cnumber} </strong>
                   </p>
                 </div>
                 <div className="col p-0">
